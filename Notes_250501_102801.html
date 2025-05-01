@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Registration</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Prevents padding from increasing element size */
+        }
+        input[type="number"] {
+            /* Specific styling for number input if needed */
+        }
+        input[type="file"] {
+            padding: 3px; /* Adjust padding for file input */
+        }
+        select {
+             /* Ensures select height matches text inputs */
+             height: 40px;
+        }
+        .investment-range {
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 5px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Register for Investment</h2>
+    <form id="registrationForm" action="#" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="18" required>
+             </div>
+
+        <div class="form-group">
+            <label for="occupation">Occupation:</label>
+            <input type="text" id="occupation" name="occupation" required>
+        </div>
+
+        <div class="form-group">
+            <label for="investment_amount">Investment Amount (PHP):</label>
+            <input type="number" id="investment_amount" name="investment_amount" min="1000" max="15000" step="1" required>
+            <div class="investment-range">Range: 1,000 PHP to 15,000 PHP</div>
+        </div>
+
+        <div class="form-group">
+            <label for="payment_mode">Preferred Mode of Payment:</label>
+            <select id="payment_mode" name="payment_mode" required>
+                <option value="" disabled selected>-- Select Mode --</option>
+                <option value="bank_transfer">Bank Transfer</option>
+                <option value="ewallet">E-Wallet (e.g., GCash, PayMaya)</option>
+                <option value="crypto">Cryptocurrency</option>
+                </select>
+        </div>
+
+        <div class="form-group">
+            <label for="passport_photo">Passport Photograph:</label>
+            <input type="file" id="passport_photo" name="passport_photo" accept="image/jpeg, image/png" required>
+             </div>
+
+        <button type="submit">Register</button>
+
+    </form>
+</div>
+
+<script>
+    const form = document.getElementById('registrationForm');
+
+    form.addEventListener('submit', function(event) {
+        // Basic check example (more robust validation needed)
+        const age = document.getElementById('age').value;
+        const amount = document.getElementById('investment_amount').value;
+        const photo = document.getElementById('passport_photo').value;
+
+        if (age < 18) {
+            alert('You must be at least 18 years old.');
+            event.preventDefault(); // Prevent form submission
+            return;
+        }
+        if (amount < 1000 || amount > 15000) {
+            alert('Investment amount must be between 1,000 and 15,000 PHP.');
+             event.preventDefault();
+             return;
+        }
+         if (!photo) {
+             alert('Please upload a passport photograph.');
+             event.preventDefault();
+             return;
+         }
+
+        // IMPORTANT: This is where you would typically send data to a server
+        // using fetch() or XMLHttpRequest. This example does NOT include that.
+        // It also doesn't include proper security measures.
+        console.log('Form data would be sent here (if backend existed).');
+        // event.preventDefault(); // Use this to stop actual submission during testing if action="#"
+    });
+</script>
+
+</body>
+</html>
